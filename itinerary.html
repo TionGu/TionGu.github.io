@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>周末两日游行程计划</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --adm-color-primary: #1677ff;
+            --adm-color-success: #00b578;
+            --adm-color-warning: #ff8f1f;
+            --adm-color-danger: #ff3141;
+            --adm-color-white: #ffffff;
+            --adm-color-text: #333333;
+            --adm-color-text-secondary: #666666;
+            --adm-color-weak: #999999;
+            --adm-color-light: #cccccc;
+            --adm-color-border: #eeeeee;
+            --adm-color-box: #f5f5f5;
+            --adm-color-background: #ffffff;
+            --adm-font-size-main: 15px;
+            --adm-font-family: 'Noto Sans SC', -apple-system, blinkmacsystemfont, 'Helvetica Neue', helvetica, segoe ui, arial, roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+            --adm-radius-s: 4px;
+            --adm-radius-m: 8px;
+            --adm-radius-l: 12px;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: var(--adm-font-family);
+            font-size: var(--adm-font-size-main);
+            line-height: 1.5;
+            color: var(--adm-color-text);
+            background-color: #f5f5f5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .adm-page {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--adm-color-background);
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        .adm-nav-bar {
+            display: flex;
+            align-items: center;
+            height: 45px;
+            background-color: var(--adm-color-background);
+            border-bottom: solid 1px var(--adm-color-border);
+            padding: 0 16px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .adm-nav-bar-title {
+            font-size: 17px;
+            font-weight: 500;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .adm-card {
+            margin: 12px 16px;
+            background-color: var(--adm-color-white);
+            border-radius: var(--adm-radius-m);
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        
+        .adm-card-header {
+            padding: 12px 16px;
+            font-size: 17px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            border-bottom: solid 1px var(--adm-color-border);
+        }
+        
+        .adm-card-header-title {
+            flex: 1;
+        }
+        
+        .adm-card-header-extra {
+            font-size: 15px;
+            font-weight: normal;
+            color: var(--adm-color-weak);
+        }
+        
+        .adm-card-body {
+            padding: 12px 16px;
+        }
+        
+        .adm-card-footer {
+            padding: 8px 16px 12px;
+            border-top: solid 1px var(--adm-color-border);
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .adm-list {
+            background-color: var(--adm-color-white);
+        }
+        
+        .adm-list-item {
+            display: flex;
+            padding: 12px 16px;
+            background-color: var(--adm-color-white);
+            border-bottom: solid 0.5px var(--adm-color-border);
+        }
+        
+        .adm-list-item-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .adm-list-item-title {
+            font-size: 16px;
+            color: var(--adm-color-text);
+            line-height: 1.4;
+            font-weight: 400;
+            margin-bottom: 4px;
+        }
+        
+        .adm-list-item-description {
+            font-size: 14px;
+            color: var(--adm-color-weak);
+            line-height: 1.4;
+        }
+        
+        .adm-list-item-prefix {
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .adm-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px;
+            border-radius: var(--adm-radius-s);
+            font-size: 14px;
+            background-color: var(--adm-color-primary);
+            color: var(--adm-color-white);
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            text-decoration: none !important;
+            min-width: 64px;
+            height: 32px;
+        }
+        
+        .adm-button:hover {
+            opacity: 0.9;
+        }
+        
+        .adm-button:active {
+            opacity: 0.8;
+        }
+        
+        .adm-tag {
+            display: inline-flex;
+            align-items: center;
+            font-size: 13px;
+            height: 24px;
+            padding: 0 8px;
+            border-radius: 2px;
+            color: var(--adm-color-primary);
+            background-color: rgba(22, 119, 255, 0.1);
+            margin-right: 8px;
+            margin-bottom: 4px;
+            white-space: nowrap;
+        }
+        
+        .adm-tag-primary {
+            color: var(--adm-color-primary);
+            background-color: rgba(22, 119, 255, 0.1);
+        }
+        
+        .adm-tag-success {
+            color: var(--adm-color-success);
+            background-color: rgba(0, 181, 120, 0.1);
+        }
+        
+        .adm-tag-warning {
+            color: var(--adm-color-warning);
+            background-color: rgba(255, 143, 31, 0.1);
+        }
+        
+        .adm-divider {
+            border-top: solid 0.5px var(--adm-color-border);
+            margin: 12px 0;
+        }
+        
+        .adm-notice-bar {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 143, 31, 0.1);
+            padding: 8px 12px;
+            font-size: 14px;
+            color: var(--adm-color-warning);
+        }
+        
+        .adm-notice-bar-content {
+            flex: 1;
+            margin: 0 8px;
+        }
+        
+        .adm-tags-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="adm-page">
+        <div class="adm-nav-bar">
+            <div class="adm-nav-bar-title">音乐节行程</div>
+        </div>
+        
+        <div style="padding: 16px; text-align: center; color: var(--adm-color-weak);">
+            <span id="current-date"></span>
+        </div>
+        
+        <div class="adm-card">
+            <div class="adm-card-header">
+                <div class="adm-card-header-title">周六行程</div>
+                <div class="adm-card-header-extra">4月19日</div>
+            </div>
+            <div class="adm-card-body" style="padding: 0;">
+                <div class="adm-list">
+                    <div class="adm-list-item">
+                        <div class="adm-list-item-prefix">
+                            <span style="background-color: var(--adm-color-primary); color: white; width: 24px; height: 24px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 12px;">起</span>
+                        </div>
+                        <div class="adm-list-item-content">
+                            <div class="adm-list-item-title">山水居紫薇苑</div>
+                            <div class="adm-list-item-description">浙江省杭州市余杭区</div>
+                        </div>
+                    </div>
+                    
+                    <div class="adm-list-item">
+                        <div class="adm-list-item-prefix">
+                            <span style="color: var(--adm-color-primary); font-weight: 500;">09:45</span>
+                        </div>
+                        <div class="adm-list-item-content">
+                            <div class="adm-list-item-title">从山水居紫薇苑出发</div>
+                            <div class="adm-list-item-description">
+                                <div>🚗 驾车前往中杭府接第一位朋友</div>
+                                <div>⏱️ 行车时间：约25分钟（14.6公里）</div>
+                            </div>
+                        </div>
+                        <a href="https://uri.amap.com/marker?position=120.062287,30.301102" class="adm-button">
+                            导航
+                        </a>
+                    </div>
+                    
+                    <div class="adm-list-item">
+                        <div class="adm-list-item-prefix">
+                            <span style="color: var(--adm-color-primary); font-weight: 500;">10:15</span>
+                        </div>
+                        <div class="adm-list-item-content">
+                            <div class="adm-list-item-title">到达中杭府</div>
+                            <div class="adm-list-item-description">
+                                <div>浙江省杭州市西湖区葛洲坝龙湖中杭府</div>
+                                <div>👋 接上第一位朋友</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="adm-list-item">
+                        <div class="adm-list-item-prefix">
+                            <span style="color: var(--adm-color-primary); font-weight: 500;">10:20</span>
+                        </div>
+                        <div class="adm-list-item-content">
+                            <div class="adm-list-item-title">前往湖州站</div>
+                            <div class="adm-list-item-description">
+                                <div>🚗 驾车前往湖州站接第二位朋友</div>
+                                <div>⏱️ 行车时间：约1小时25分钟（80公里）</div>
+                            </div>
+                        </div>
+                        <a href="https://uri.amap.com/marker?position=120.023783,30.862856" class="adm-button">
+                            导航
+                        </a>
+                    </div>
+                    
+                    <div class="adm-list-item">
+                        <div class="adm-list-item-prefix">
+                            <span style="color: var(--adm-color-primary); font-weight: 500;">11:45</span>
+                        </div>
+                        <div class="adm-list-item-content">
+                            <div class="adm-list-item-title">到达湖州站</div>
+                            <div class="adm-list-item-description">
+                                <div>浙江省湖州市吴兴区</div>
+                                <div>👋 接上第二位朋友</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="adm-list-item">
+                        <div class="adm-list-item-prefix">
+                            <span style="color: var(--adm-color-primary); font-weight: 500;">12:00</span>
+                        </div>
+                        <div class="adm-list-item-content">
+                            <div class="adm-list-item-title">前往午餐地点</div>
+                            <div class="adm-list-item-description">
+                                <div>🚗 驾车前往小伙子干挑面</div>
+                                <div>⏱️ 行车时间：约15分钟（7.9公里）</div>
+                            </div>
+                        </div>
+                        <a href="https://uri.amap.com/marker?position=120.097787,30.862859" class="adm-button">
+                            导航
+                        </a>
+                    </div>
+                    
+                    <div class="adm-list-item">
+                        <div class="adm-list-item-prefix">
+                            <span style="color: var(--adm-color-primary); font-weight: 500;">12:15</span>
+                        </div>
+                        <div class="adm-list-item-content">
+                            <div class="adm-list-item-title">享用午餐</div>
+                            <div class="adm-list-item-description">
+                                <div>小伙子干挑面(勤劳街店)</div>
+                                <div>湖州市爱山街道勤劳街62号</div>
+                                <div class="adm-tags-wrapper">
+                                    <span class="adm-tag">营业时间 07:00-22:00</span>
+                                    <span class="adm-tag adm-tag-success">评分 4.8</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="adm-list-item">
+                        <div class="adm-list-item-prefix">
+                            <span style="color: var(--adm-color-primary); font-weight: 500;">12:45</span>
+                        </div>
+                        <div class="adm-list-item-content">
+                            <div class="adm-list-item-title">前往民宿</div>
+                            <div class="adm-list-item-description">
+                                <div>🚗 驾车前往龙湾府民宿</div>
+                                <div>⏱️ 行车时间：约25分钟（13.4公里）</div>
+                            </div>
+                        </div>
+                        <a href="https://uri.amap.com/marker?position=120.092533,30.964643" class="adm-button">
+                            导航
+                        </a>
+                    </div>
+                    
+                    <div class="adm-list-item">
+                        <div class="adm-list-item-prefix">
+                            <span style="color: var(--adm-color-primary); font-weight: 500;">13:10</span>
+                        </div>
+                        <div class="adm-list-item-content">
+                            <div class="adm-list-item-title">抵达民宿办理入住</div>
+                            <div class="adm-list-item-description">
+                                <div>维漫精品民宿(长兴太湖龙之梦店)</div>
+                                <div>洪桥镇骏宏龙湾府18栋1单元6楼</div>
+                                <div>🔑 停车、放行李、入住</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="adm-list-item">
+                        <div class="adm-list-item-prefix">
+                            <span style="color: var(--adm-color-primary); font-weight: 500;">13:20</span>
+                        </div>
+                        <div class="adm-list-item-content">
+                            <div class="adm-list-item-title">前往音乐节现场</div>
+                            <div class="adm-list-item-description">
+                                <div>🚕 打车前往太湖图影生态停车场</div>
+                                <div>⏱️ 行车时间：约10分钟（4.5公里）</div>
+                            </div>
+                        </div>
+                        <a href="https://uri.amap.com/marker?position=120.061155,30.966498" class="adm-button">
+                            导航
+                        </a>
+                    </div>
+                    
+                    <div class="adm-list-item">
+                        <div class="adm-list-item-prefix">
+                            <span style="color: var(--adm-color-warning); font-weight: 500;">13:30</span>
+                        </div>
+                        <div class="adm-list-item-content">
+                            <div class="adm-list-item-title">准时抵达音乐节</div>
+                            <div class="adm-list-item-description">
+                                <div>长兴县太湖图影生态停车场</div>
+                                <div>浙江省湖州市长兴县</div>
+                                <div>🎵 音乐节开始时间：13:30</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="adm-card">
+            <div class="adm-card-header">
+                <div class="adm-card-header-title">周日行程</div>
+                <div class="adm-card-header-extra">4月20日</div>
+            </div>
+            <div class="adm-card-body" style="padding: 0;">
+                <div class="adm-list">
+                    <div class="adm-list-item">
+                        <div class="adm-list-item-prefix">
+                            <span style="color: var(--adm-color-primary); font-weight: 500;">10:00</span>
+                        </div>
+                        <div class="adm-list-item-content">
+                            <div class="adm-list-item-title">办理退房手续</div>
+                            <div class="adm-list-item-description">
+                                <div>维漫精品民宿(长兴太湖龙之梦店)</div>
+                                <div>洪桥镇骏宏龙湾府18栋1单元6楼</div>
+                                <div>🔑 整理行李、结账退房</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="adm-list-item">
+                        <div class="adm-list-item-prefix">
+                            <span style="color: var(--adm-color-primary); font-weight: 500;">11:00</span>
+                        </div>
+                        <div class="adm-list-item-content">
+                            <div class="adm-list-item-title">前往金泰老法菜</div>
+                            <div class="adm-list-item-description">
+                                <div>🚗 驾车前往金泰老法菜</div>
+                                <div>⏱️ 行车时间：约40分钟（12.4公里）</div>
+                            </div>
+                        </div>
+                        <a href="https://uri.amap.com/marker?position=120.101579,30.871455" class="adm-button">
+                            导航
+                        </a>
+                    </div>
+                    
+                    <div class="adm-list-item">
+                        <div class="adm-list-item-prefix">
+                            <span style="color: var(--adm-color-primary); font-weight: 500;">11:45</span>
+                        </div>
+                        <div class="adm-list-item-content">
+                            <div class="adm-list-item-title">享用午餐</div>
+                            <div class="adm-list-item-description">
+                                <div>金泰老法菜(天民路店)</div>
+                                <div>湖州市大线农民市场天民路26-30</div>
+                                <div class="adm-tags-wrapper">
+                                    <span class="adm-tag">营业时间 09:00-20:00</span>
+                                    <span class="adm-tag adm-tag-success">评分 4.3</span>
+                                    <span class="adm-tag">人均 ¥68</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="adm-list-item">
+                        <div class="adm-list-item-prefix">
+                            <span style="color: var(--adm-color-primary); font-weight: 500;">13:00</span>
+                        </div>
+                        <div class="adm-list-item-content">
+                            <div class="adm-list-item-title">前往南浔古镇</div>
+                            <div class="adm-list-item-description">
+                                <div>🚗 驾车前往南浔古镇</div>
+                                <div>⏱️ 行车时间：约1小时（35公里）</div>
+                            </div>
+                        </div>
+                        <a href="https://uri.amap.com/marker?position=120.431096,30.874796" class="adm-button">
+                            导航
+                        </a>
+                    </div>
+                    
+                    <div class="adm-list-item">
+                        <div class="adm-list-item-prefix">
+                            <span style="color: var(--adm-color-primary); font-weight: 500;">14:00</span>
+                        </div>
+                        <div class="adm-list-item-content">
+                            <div class="adm-list-item-title">游览南浔古镇</div>
+                            <div class="adm-list-item-description">
+                                <div>南浔古镇</div>
+                                <div>浙江省湖州市南浔区人瑞路51号</div>
+                                <div>🎫 建议在南门或东门游客服务中心购票入园</div>
+                            </div>
+                            
+                            <div style="background-color: var(--adm-color-box); margin: 12px 0; padding: 12px 16px; border-radius: var(--adm-radius-s); margin-right: -16px;">
+                                <div style="font-weight: 500; margin-bottom: 6px;">南浔古镇游览推荐路线</div>
+                                <ol style="padding-left: 20px; margin: 0;">
+                                    <li>小莲庄（江南四大名园之一，园林精美）</li>
+                                    <li>百间楼（明清时期保存完好的民居群）</li>
+                                    <li>通津桥（古镇标志性建筑）</li>
+                                    <li>嘉业藏书楼（江南四大藏书楼之一）</li>
+                                    <li>张静江故居（近代实业家故居）</li>
+                                    <li>乘坐游船欣赏水乡风光</li>
+                                </ol>
+                                
+                                <div style="font-weight: 500; margin: 12px 0 6px;">南浔古镇特色美食</div>
+                                <div>🍲 南浔酱鸭（古镇名菜，肉质鲜嫩）</div>
+                                <div>🍜 南浔羊肉面（当地特色面食）</div>
+                                <div>🍡 浔味豆腐干（手工制作，口感丰富）</div>
+                                <div>🥮 水晶糕（传统特色点心）</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="adm-list-item">
+                        <div class="adm-list-item-prefix">
+                            <span style="color: var(--adm-color-primary); font-weight: 500;">17:30</span>
+                        </div>
+                        <div class="adm-list-item-content">
+                            <div class="adm-list-item-title">结束行程返程</div>
+                            <div class="adm-list-item-description">
+                                <div>🚗 根据需要安排返程路线</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="adm-notice-bar" style="margin: 16px;">
+            <div style="font-size: 18px;">⚠️</div>
+            <div class="adm-notice-bar-content">
+                音乐节开始时间为 13:30，请确保准时到达
+            </div>
+        </div>
+        
+        <div class="adm-card">
+            <div class="adm-card-header">
+                <div class="adm-card-header-title">出行注意事项</div>
+            </div>
+            <div class="adm-card-body">
+                <ul style="padding-left: 20px; margin: 0;">
+                    <li>请预留足够时间，考虑到周末可能会有交通拥堵</li>
+                    <li>建议提前15分钟到达各个接人点</li>
+                    <li>民宿入住时请确认停车位置</li>
+                    <li>记得带好所有必要证件和票务</li>
+                    <li>南浔古镇需购票入园，成人票约100元左右</li>
+                    <li>南浔古镇内可能信号不太好，建议提前下载离线地图</li>
+                    <li>南浔古镇游览时间较长，注意防晒和补充水分</li>
+                    <li>退房时记得检查有无遗漏物品</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="text-align: center; color: var(--adm-color-weak); padding: 20px 16px;">
+            <div>祝您旅途愉快！</div>
+            <div style="margin-top: 4px; font-size: 13px;">行程规划于 <span id="plan-date"></span></div>
+        </div>
+    </div>
+    
+    <script>
+        // 显示当前日期
+        const dateOptions = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('zh-CN', dateOptions);
+        
+        // 显示规划日期
+        const today = new Date();
+        document.getElementById('plan-date').textContent = today.toLocaleDateString('zh-CN', dateOptions);
+    </script>
+</body>
+</html> 
