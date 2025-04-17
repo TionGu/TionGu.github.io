@@ -53,20 +53,22 @@
         .adm-nav-bar {
             display: flex;
             align-items: center;
-            height: 45px;
-            background-color: var(--adm-color-background);
-            border-bottom: solid 1px var(--adm-color-border);
+            height: 56px;
+            background: linear-gradient(135deg, var(--adm-color-primary), #36a0ff);
             padding: 0 16px;
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
         
         .adm-nav-bar-title {
-            font-size: 17px;
-            font-weight: 500;
+            font-size: 20px;
+            font-weight: 600;
             text-align: center;
             flex: 1;
+            color: var(--adm-color-white);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
         
         .adm-card {
@@ -226,6 +228,25 @@
         a {
             text-decoration: none;
         }
+        
+        .adm-page-header {
+            padding: 20px 16px;
+            text-align: center;
+            color: var(--adm-color-weak);
+            background: linear-gradient(to bottom, rgba(22, 119, 255, 0.05), transparent);
+            border-bottom: 1px solid var(--adm-color-border);
+        }
+        
+        .adm-page-header .date {
+            font-size: 15px;
+            color: var(--adm-color-text-secondary);
+            margin-bottom: 4px;
+        }
+        
+        .adm-page-header .subtitle {
+            font-size: 13px;
+            color: var(--adm-color-weak);
+        }
     </style>
 </head>
 <body>
@@ -234,8 +255,9 @@
             <div class="adm-nav-bar-title">音乐节行程</div>
         </div>
         
-        <div style="padding: 16px; text-align: center; color: var(--adm-color-weak);">
-            <span id="current-date"></span>
+        <div class="adm-page-header">
+            <div class="date" id="current-date"></div>
+            <div class="subtitle">行程规划于 <span id="plan-date"></span></div>
         </div>
         
         <div class="adm-card">
@@ -554,7 +576,6 @@
         
         <div style="text-align: center; color: var(--adm-color-weak); padding: 20px 16px;">
             <div>祝您旅途愉快！</div>
-            <div style="margin-top: 4px; font-size: 13px;">行程规划于 <span id="plan-date"></span></div>
         </div>
     </div>
     
